@@ -1,10 +1,34 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, url_for, request
+from conexionpostgresql import ConexionPostgreSQL
+import os
+
 
 app = Flask(__name__)
 
-@app.route('/')
+conexion = ConexionPostgreSQL(
+    os.environ.get("rHOST"),
+    "5432",
+    "contacto",
+    "mjrodriguez",
+    os.environ.get("rPASSWORD")
+)
+
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
+@app.route('/', methods=['POST'])
+def index_post():
+    nombre = request.form.get('nombre')
+    email = request.form.get('mail')
+    whatsapp = request.form.get('whatsapp')
+    mensaje = request.form.get('mensaje')
+
+    conexion.conectar()
+    conexion.insertar_datos(nombre, email, whatsapp, mensaje)
+    conexion.desconectar()
+
+    return render_template('index.html', success_message='Gracias por contactarnos')
 
 @app.route('/favicon.ico')
 def favicon():

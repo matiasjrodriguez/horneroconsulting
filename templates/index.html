@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/postcss.config.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1.5.10/css/pico.min.css">
+    <style>
+        body {margin-left: 10px;}
+        article {margin-left: 500px; margin-right: 500px;}
+        textarea {resize: vertical;}
+    </style>
     <title>Hornero Consulting</title>
 </head>
 <body>
     <h1>Hornero Consulting</h1>
+
+    <article>
+
+        <form action="{{ url_for('index') }}", method="post">
+
+                <label for="nombre">
+                    Nombre
+                    <input type="text" id="nombre" name="nombre" required>
+                </label>
+
+                <label for="mail">
+                    Email
+                    <input type="email" id="mail" name="mail" required>
+                    <small>No vamos a compartir tu mail con nadie</small>
+                </label>
+                
+                <label for="whatsapp">
+                    WhatsApp
+                    <input type="tel" id="whatsapp" name="whatsapp">
+                </label>
+
+                <label for="mensaje">
+                    Mensaje
+                    <textarea id="mensaje" name="mensaje"></textarea>
+                </label>
+
+                <button type="submit">Contactar</button>
+
+        </form>
+
+    </article>
+
     <h6>Copyright 2023 © Todos los derechos reservados</h6>
     <!---Eso tilin-->
 </body>
