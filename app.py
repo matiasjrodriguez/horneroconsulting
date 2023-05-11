@@ -6,11 +6,11 @@ import os
 app = Flask(__name__)
 
 conexion = ConexionPostgreSQL(
-    os.environ.get("rHOST"),
+    os.getenv("rHOST"),
     "5432",
     "contacto",
     "mjrodriguez",
-    os.environ.get("rPASSWORD")
+    os.getenv("rPASSWORD")
 )
 
 @app.route('/', methods=['GET'])
