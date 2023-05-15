@@ -19,7 +19,7 @@ def healthz():
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('index.html', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"), test="test")
 
 @app.route('/', methods=['POST'])
 def index_post():
@@ -32,7 +32,7 @@ def index_post():
     conexion.insertar_datos(nombre, email, whatsapp, mensaje)
     conexion.desconectar()
 
-    return render_template('index.html', success_message='Gracias por contactarnos', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"), test="test")
+    return render_template('index.html', success_message='Gracias por contactarnos')
 
 @app.route('/favicon.ico')
 def favicon():
