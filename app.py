@@ -13,6 +13,10 @@ conexion = ConexionPostgreSQL(
     os.getenv("rPASSWORD")
 )
 
+@app.route('/healthz', methods=['GET'])
+def healthz():
+    return 200
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -28,7 +32,7 @@ def index_post():
     conexion.insertar_datos(nombre, email, whatsapp, mensaje)
     conexion.desconectar()
 
-    return render_template('index.html', success_message='Gracias por contactarnos')
+    return render_template('index.html', success_message='Gracias por contactarnos', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"))
 
 @app.route('/favicon.ico')
 def favicon():
