@@ -1,9 +1,12 @@
+import random
 from flask import Flask, render_template, url_for, request
+from flask_cors import CORS
 from conexionpostgresql import ConexionPostgreSQL
 import os
-
+from generador_citas_inspiradoras.citas_inspiradoras import citasInspiradoras
 
 app = Flask(__name__)
+CORS(app)
 
 conexion = ConexionPostgreSQL(
     os.getenv("rHOST"),
@@ -45,3 +48,14 @@ def index_post():
 @app.route('/coffee_games', methods=['GET'])
 def coffee_games():
     return render_template('coffee_games.html')
+
+@app.route('/api/citas', methods=['GET'])
+def obtener_cita_aleatoria():
+    cita_aleatoria = random.choice(citasInspiradoras)
+    return {
+        'cita': cita_aleatoria
+    }, 200
+
+@app.route('/generador_citas', methods=['GET'])
+def generar_cita():
+    return render_template('cita.html')
