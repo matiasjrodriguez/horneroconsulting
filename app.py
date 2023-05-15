@@ -32,7 +32,7 @@ def index_post():
     conexion.insertar_datos(nombre, email, whatsapp, mensaje)
     conexion.desconectar()
 
-    return render_template('index.html', success_message='Gracias por contactarnos', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"))
+    return render_template('index.html', success_message='Gracias por contactarnos', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"), test="test")
 
 @app.route('/favicon.ico')
 def favicon():
