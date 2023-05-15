@@ -17,6 +17,14 @@ conexion = ConexionPostgreSQL(
 def healthz():
     return 'healthy', 200
 
+@app.route('/favicon.ico')
+def favicon():
+    import os
+    from flask import send_from_directory
+
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'Pajaro.ico',mimetype='image/vnd.microsoft.icon')
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -34,10 +42,6 @@ def index_post():
 
     return render_template('index.html', success_message='Gracias por contactarnos')
 
-@app.route('/favicon.ico')
-def favicon():
-    import os
-    from flask import send_from_directory
-
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'Pajaro.ico',mimetype='image/vnd.microsoft.icon')
+@app.route('/coffee_games', methods=['GET'])
+def coffee_games():
+    return render_template('coffee_games.html')
