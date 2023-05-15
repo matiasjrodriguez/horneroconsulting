@@ -15,7 +15,7 @@ conexion = ConexionPostgreSQL(
 
 @app.route('/healthz', methods=['GET'])
 def healthz():
-    return 200
+    return 'healthy', 200
 
 @app.route('/', methods=['GET'])
 def index():
