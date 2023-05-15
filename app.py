@@ -19,7 +19,7 @@ def healthz():
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html', host=os.getenv("rHOST"), password=os.getenv("rPASSWORD"), test="test")
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def index_post():
